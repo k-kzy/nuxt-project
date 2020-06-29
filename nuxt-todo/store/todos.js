@@ -9,11 +9,11 @@ export const state = () => ({
   todos: []
 })
 
-// export const getters = {
-//   orderdTodos: state => {
-//     return _.sortBy(state.todos, 'created')
-//   }
-// }
+export const getters = {
+  orderdTodos: state => {
+    return _.sortBy(state.todos, 'created')
+  }
+}
 
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }) => {
