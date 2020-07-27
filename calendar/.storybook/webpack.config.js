@@ -1,31 +1,75 @@
 const path = require('path')
+const rootPath = path.resolve(__dirname, '../src/')
 
-/* SCSSを利用できるようにloaderを設定
-  (注意) nuxt側とは別で、改めてこちらのwebpack.configを設定する必要がある。
-  */
-module.exports = ({ config }) => {
+module.exports = async ({ config, mode }) => {
+  mode = "development"
+
   config.module.rules.push({
-    test: /\.ts$/,
-    exclude: /node_modules/,
+    test: /\.stories\.[tj]sx?$/,
     use: [
       {
-        loader: "ts-loader",
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
-          transpileOnly: true,
-        },
+        loader: require.resolve('@storybook/source-loader'),
+        options: { injectParameters: true },
       },
     ],
-  })
-  config.resolve.alias['@'] = path.resolve(__dirname, '../')
-  config.resolve.alias['~'] = path.resolve(__dirname, '../')
+    include: [path.resolve(__dirname, '../src')],
+    enforce: 'pre',
+  });
+
+  config.module.rules.push({
+    test: /\.(otf|eot|svg|ttf|woff|woff2)(\?.+)?$/,
+    loader: 'url-loader',
+  });
+
+  config.module.rules.push({
+    test: /\.css/,
+    use: [
+      'style-loader',
+      { loader: 'css-loader', options: { url: false } },
+    ],
+  });
+
+  config.module.rules.push({
+    test: /\.ts/,
+    use: [
+      {
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+          transpileOnly: true
+        },
+      }
+    ],
+  });
+
+  config.module.rules.push({
+    test: /\.vue$/,
+    loader: 'storybook-addon-vue-info/loader',
+    enforce: 'post'
+  });
+
   config.module.rules.push({
     test: /\.scss$/,
-    loaders: [
+    use: [
       'style-loader',
       'css-loader',
-      'sass-loader',
+      {
+        loader: 'sass-loader',
+      },
+      {
+        loader: 'sass-resources-loader',
+        options: {
+          resources: [
+            path.resolve(__dirname, './../src/assets/scss/style.scss'),
+          ],
+        }
+      }
     ]
-  })
-  return config
+  });
+
+  config.resolve.extensions = ['.ts', '.js', '.vue', '.json']
+  config.resolve.alias['~'] = rootPath
+  config.resolve.alias['@'] = rootPath
+
+  return config;
 }

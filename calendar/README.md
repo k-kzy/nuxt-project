@@ -18,3 +18,13 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## .storybook
+### main.js
+config.js、addons.js、presets.js の内容をまとめたもの。
+### preview.js
+レンダリング制御用。
+### manager.js
+アプリUI設定用。設定しないなら不要。
+
+参考：https://medium.com/storybookjs/declarative-storybook-configuration-49912f77b78
