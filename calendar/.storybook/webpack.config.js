@@ -2,7 +2,7 @@ const path = require('path')
 const rootPath = path.resolve(__dirname, '../src/')
 
 module.exports = async ({ config, mode }) => {
-  mode = "development"
+  mode = "development";
 
   config.module.rules.push({
     test: /\.stories\.[tj]sx?$/,
@@ -17,7 +17,7 @@ module.exports = async ({ config, mode }) => {
   });
 
   config.module.rules.push({
-    test: /\.(otf|eot|svg|ttf|woff|woff2)(\?.+)?$/,
+    test: /\.(png|jpg|otf|eot|svg|ttf|woff|woff2)(\?.+)?$/,
     loader: 'url-loader',
   });
 
