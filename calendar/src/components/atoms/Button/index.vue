@@ -15,7 +15,7 @@ export default class Title extends Vue {
 
 <style lang="scss" scoped>
 .button {
-  font-size: 40px;
   color: #000;
+  font-size: 40px;
 }
 </style>
