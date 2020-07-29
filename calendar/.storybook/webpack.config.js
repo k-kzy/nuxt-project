@@ -60,7 +60,7 @@ module.exports = async ({ config, mode }) => {
         loader: 'sass-resources-loader',
         options: {
           resources: [
-            path.resolve(__dirname, './../src/assets/scss/style.scss'),
+            path.resolve(__dirname, '../src/assets/scss/app.scss'),
           ],
         }
       }

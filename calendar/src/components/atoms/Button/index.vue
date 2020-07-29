@@ -1,5 +1,5 @@
 <template>
-  <button>
+  <button class="button">
     {{ text }}
   </button>
 </template>
@@ -14,7 +14,7 @@ export default class Title extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.title {
+.button {
   font-size: 40px;
   color: #000;
 }

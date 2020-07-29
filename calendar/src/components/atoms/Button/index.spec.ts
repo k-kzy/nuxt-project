@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
 import Button from '@/src/components/atoms/Button/index.vue'
 
-describe('Button', () => {
-  test('Display text', () => {
+describe('Button', (): void => {
+  test('Display text', (): void => {
     const props = {
       text: '検索する',
     }
