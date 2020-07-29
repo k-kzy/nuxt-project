@@ -24,16 +24,19 @@
         </a>
       </div>
     </div>
+    <Button text="ボタン" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Logo from '../components/Logo.vue'
+import Button from '../components/atoms/Button/index.vue'
 
 @Component({
   components: {
     Logo,
+    Button,
   },
 })
 export default class Index extends Vue {}
